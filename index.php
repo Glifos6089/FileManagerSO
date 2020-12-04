@@ -67,6 +67,9 @@ function sortedDir($dir)
         <div class="col-12" id="eliminar">
             <i class="fas fa-trash fa-fw"></i> Eliminar
         </div>
+        <div class="col-12" id="cambiar_permisos">
+            <i class="fas fa-pencil fa-fw"></i> Cambiar permisos
+        </div>
     </div>
 
     <div id="menu2" class="menu row m-0">
@@ -163,6 +166,65 @@ function sortedDir($dir)
     <script src="./js/scripts.js"></script>
 
     <script>
+        $('#cambiar_permisos').on('click', function() {
+            Swal.fire({
+                title: "Ingrese el código del permiso",
+                html: `
+                <form action='cambiarPermiso.php' method='GET'>
+                    <div class='form-group'>
+                        <input type='number' class='form-control' name='codigo_permiso' min='600' max='777'>
+                    </div>
+                    <small id='cambiarPermisoComment' class='form-text text-muted'>
+                        <br>
+                        <div class="container">
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Código</th>
+                                        <th scope="col">Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">600</th>
+                                        <td>El propietario puede leer y escribir.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">644</th>
+                                        <td>El propietario puede leer y escribir, los grupos de otros usuarios pueden leer.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">666</th>
+                                        <td>El propietario, el grupo y otros usuarios pueden leer y escribir.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">700</th>
+                                        <td>El propietario puede leer, escribir y ejecutar. Los demás usuarios no pueden hacer nada.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">711</th>
+                                        <td>El propietario puede leer, escribir y ejecutar. Los demás usuarios sólo pueden ejecutar.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">755</th>
+                                        <td>El propietario puede leer, escribir y ejecutar. Los demás usuarios sólo pueden ejecutar y leer.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">777</th>
+                                        <td>Todos los permisos para todos los usuarios.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </small>
+                    <br>
+                    <input type='submit' class='btn btn-primary' value='CAMBIAR'>
+                </form>`,
+                showCancelButton: false,
+                showConfirmButton: false
+            })
+        })
+
         $('#crearCarpeta').on('click', function() {
             Swal.fire({
                 title: "Ingrese el nombre de la carpeta que desea crear",
